@@ -9,7 +9,7 @@
             <property name="suppressAllComments" value="true"/>  
         </commentGenerator>  
         <!--数据库链接URL，用户名、密码 -->  
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/y2_test" userId="root" password="yesheng">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/dzw" userId="root" password="123456">
         </jdbcConnection>
         <javaTypeResolver>  
             <property name="forceBigDecimals" value="false"/>  
@@ -20,11 +20,11 @@
             <property name="trimStrings" value="true"/>  
         </javaModelGenerator>  
         <!--映射文件生成位置-->  
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">  
+        <sqlMapGenerator targetPackage="mapper/cjl" targetProject="src/main/resources">  
             <property name="enableSubPackages" value="true"/>  
         </sqlMapGenerator>  
         <!--dao生成位置-->  
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.accp.dao" targetProject="src/main/java">  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.accp.dao.cjl" targetProject="src/main/java">  
             <property name="enableSubPackages" value="true"/>  
         </javaClientGenerator>  
         <!-- 
@@ -32,8 +32,6 @@
 		domainObjectName是实体类名
 		-->  
 		<!--表1-->
-        <table tableName="tbl_person" domainObjectName="Person" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-		<!--表2-->
-		<table tableName="tbl_address" domainObjectName="Address" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="posttable" domainObjectName="Posttable" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>  
 </generatorConfiguration>  
