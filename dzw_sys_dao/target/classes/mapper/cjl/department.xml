@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapper namespace="com.accp.dao.DepartmentDao" >
-  <select id="selectByPrimaryKey" resultType="com.accp.pojo.Department"  parameterType="java.lang.Integer" >
+  <select id="queryAll" resultType="com.accp.pojo.Department" >
 	    SELECT 
 	  `departmentid`,
 	  `depnames` 
