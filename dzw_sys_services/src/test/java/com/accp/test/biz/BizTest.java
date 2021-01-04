@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.accp.biz.xn.JurisdictionBiz;
+import com.accp.dao.xn.LoadEmpDao;
 import com.alibaba.fastjson.JSON;
 
 
@@ -14,13 +15,16 @@ import com.alibaba.fastjson.JSON;
 @ContextConfiguration("classpath:/spring-ctx.xml")
 public class BizTest {
 	
-	@Autowired JurisdictionBiz jurisdictionBiz;
+//	@Autowired JurisdictionBiz jurisdictionBiz;
+	@Autowired
+	LoadEmpDao loadEmpDao;
 	
 	@Test
 	public void test() {
-		jurisdictionBiz.queryAllJurisdictions().forEach(temp->{
-			System.out.println(JSON.toJSONString(temp));
-		});
+//		jurisdictionBiz.queryAllJurisdictions().forEach(temp->{
+//			System.out.println(JSON.toJSONString(temp));
+//		});
+		loadEmpDao.loginIn("admin", "admin");
 	}
 
 }
