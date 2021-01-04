@@ -9,6 +9,7 @@ import com.accp.dao.cjl.DepartmentDao;
 import com.accp.dao.cjl.PosttableMapper;
 import com.accp.pojo.Department;
 import com.accp.pojo.Posttable;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class CjlBiz {
@@ -54,7 +55,25 @@ public class CjlBiz {
 	/**
 	 * 查询所有岗位
 	 */
-	public List<Posttable> queryAllpostt(){
-		return dao1.selectByPrimaryKey();
+	public PageInfo<Posttable> queryAllpostt(){
+		return new PageInfo<Posttable>(dao1.selectByPrimaryKey());
+	}
+	/**
+	 * 添加一个岗位
+	 */
+	public Integer addpost(Posttable posttable) {
+		return dao1.insertSelective(posttable);
+	}
+	/**
+	 * 修改岗位
+	 */
+	public Integer modifypost(Posttable posttable) {
+		return dao1.updateByPrimaryKeySelective(posttable);
+	}
+	/**
+	 * 删除岗位
+	 */
+	public Integer removepost(Integer postid) {
+		return dao1.deleteByPrimaryKey(postid);
 	}
 }

@@ -16,8 +16,6 @@ public class CjlBizTest {
 	
 	@Test
 	public void queryAlltest() {
-		biz.queryAllpostt().forEach(temp->{
-			System.out.println(temp);
-		});
+		
 	}
 }
