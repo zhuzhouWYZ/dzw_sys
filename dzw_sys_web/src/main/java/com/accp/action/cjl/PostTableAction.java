@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.biz.cjl.CjlBiz;
-import com.accp.pojo.Person;
 import com.accp.pojo.Posttable;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
