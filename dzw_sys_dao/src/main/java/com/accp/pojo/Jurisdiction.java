@@ -5,20 +5,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.alibaba.fastjson.annotation.JSONField;
 
 public class Jurisdiction{
-	private int jurisdictionid;//角色编号
+	private Integer jurisdictionid;//角色编号
 	private String jurisdictionname;//角色名
 	private String jurisdictioncode;//角色编码
-	private int jurstatus;//角色状态
+	private Integer jurstatus;//角色状态
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	private String createdate;//角色创建日期
 	private String createby;//角色创建人
 
-	public int getJurisdictionid(){
+	public Integer getJurisdictionid(){
 		return jurisdictionid;
 	}
-	public void setJurisdictionid(int jurisdictionid){
+	public void setJurisdictionid(Integer jurisdictionid){
 		this.jurisdictionid = jurisdictionid;
 	}
 	public String getJurisdictionname(){
@@ -33,10 +33,10 @@ public class Jurisdiction{
 	public void setJurisdictioncode(String jurisdictioncode){
 		this.jurisdictioncode = jurisdictioncode;
 	}
-	public int getJurstatus(){
+	public Integer getJurstatus(){
 		return jurstatus;
 	}
-	public void setJurstatus(int jurstatus){
+	public void setJurstatus(Integer jurstatus){
 		this.jurstatus = jurstatus;
 	}
 	public String getCreatedate(){
@@ -54,7 +54,7 @@ public class Jurisdiction{
 	public Jurisdiction(){
 		super();
 	}
-	public Jurisdiction(int jurisdictionid,String jurisdictionname,String jurisdictioncode,int jurstatus,String createdate,String createby){
+	public Jurisdiction(Integer jurisdictionid,String jurisdictionname,String jurisdictioncode,Integer jurstatus,String createdate,String createby){
 		super();
 		this.jurisdictionid = jurisdictionid;
 		this.jurisdictionname = jurisdictionname;

@@ -37,4 +37,18 @@ public class LoadEmpAction {
 		
 		return message;
 	}
+	
+	@GetMapping("/getLoginEMP")
+	public Employee getEMP(HttpSession session) {
+		return (Employee) (session.getAttribute("EMP"));
+	}
+	
+	@GetMapping("/loginOut")
+	public Map<String, String> loginOut(HttpSession session){
+		session.removeAttribute("EMP");
+		Map<String, String> message = new HashMap<String, String>();
+		message.put("code", "200");
+		message.put("msg", "ok");
+		return message;
+	}
 }
