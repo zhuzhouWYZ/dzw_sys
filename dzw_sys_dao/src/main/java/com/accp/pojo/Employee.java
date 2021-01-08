@@ -1,10 +1,10 @@
 package com.accp.pojo;
 public class Employee{
 	private String employeeno;
-	private int jurisdictionid;
-	private int departmentid;
+	private Integer jurisdictionid;
+	private Integer departmentid;
 	private String empname;
-	private int esex;
+	private Integer esex;
 	private String emplogenid;
 	private String emplogepaw;
 	private String education;
@@ -20,7 +20,7 @@ public class Employee{
 	private String rztimes;
 	private String lztimes;
 	private String brithtimes;
-	private int status;
+	private Integer status;
 
 	public String getEmployeeno(){
 		return employeeno;
@@ -28,16 +28,16 @@ public class Employee{
 	public void setEmployeeno(String employeeno){
 		this.employeeno = employeeno;
 	}
-	public int getJurisdictionid(){
+	public Integer getJurisdictionid(){
 		return jurisdictionid;
 	}
-	public void setJurisdictionid(int jurisdictionid){
+	public void setJurisdictionid(Integer jurisdictionid){
 		this.jurisdictionid = jurisdictionid;
 	}
-	public int getDepartmentid(){
+	public Integer getDepartmentid(){
 		return departmentid;
 	}
-	public void setDepartmentid(int departmentid){
+	public void setDepartmentid(Integer departmentid){
 		this.departmentid = departmentid;
 	}
 	public String getEmpname(){
@@ -46,10 +46,10 @@ public class Employee{
 	public void setEmpname(String empname){
 		this.empname = empname;
 	}
-	public int getEsex(){
+	public Integer getEsex(){
 		return esex;
 	}
-	public void setEsex(int esex){
+	public void setEsex(Integer esex){
 		this.esex = esex;
 	}
 	public String getEmplogenid(){
@@ -142,16 +142,16 @@ public class Employee{
 	public void setBrithtimes(String brithtimes){
 		this.brithtimes = brithtimes;
 	}
-	public int getStatus(){
+	public Integer getStatus(){
 		return status;
 	}
-	public void setStatus(int status){
+	public void setStatus(Integer status){
 		this.status = status;
 	}
 	public Employee(){
 		super();
 	}
-	public Employee(String employeeno,int jurisdictionid,int departmentid,String empname,int esex,String emplogenid,String emplogepaw,String education,String graduationschool,String major,String IDcard,String address,String newaddress,String empphone,String emergencyphone,String molphone,String email,String rztimes,String lztimes,String brithtimes,int status){
+	public Employee(String employeeno,Integer jurisdictionid,Integer departmentid,String empname,Integer esex,String emplogenid,String emplogepaw,String education,String graduationschool,String major,String IDcard,String address,String newaddress,String empphone,String emergencyphone,String molphone,String email,String rztimes,String lztimes,String brithtimes,Integer status){
 		super();
 		this.employeeno = employeeno;
 		this.jurisdictionid = jurisdictionid;

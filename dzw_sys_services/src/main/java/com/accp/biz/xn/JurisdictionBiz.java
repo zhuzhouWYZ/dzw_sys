@@ -17,4 +17,16 @@ public class JurisdictionBiz {
 	public List<Jurisdiction> queryAllJurisdictions(){
 		return jurisdictionDao.queryAlljJurisdictions();
 	}
+	
+	public Integer addJurisdiction(Jurisdiction jurisdiction) {
+		return jurisdictionDao.addJurisdiction(jurisdiction);
+	}
+	
+	public Integer modifyJurisdiction(Jurisdiction jurisdiction) {
+		return jurisdictionDao.updateJurisdiction(jurisdiction);
+	}
+	
+	public Integer removeJurisdiction(String jurisdictionid) {
+		return jurisdictionDao.delJurisdiction(jurisdictionid);
+	}
 }

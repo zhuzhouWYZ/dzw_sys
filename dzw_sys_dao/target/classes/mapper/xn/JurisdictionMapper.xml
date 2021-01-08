@@ -7,4 +7,28 @@
 		FROM
 		`jurisdiction`
 	</select>
+	
+	<insert id="addJurisdiction">
+		INSERT INTO `jurisdiction` 
+		(`jurisdictionname`,`jurisdictioncode`,`jurstatus`,`createdate`,`createby`) 
+		VALUES
+		(#{jurisdiction.jurisdictionname},#{jurisdiction.jurisdictioncode},'0',NOW(),#{jurisdiction.createby})
+	</insert>
+	
+	<update id="updateJurisdiction">
+		UPDATE `jurisdiction` 
+		SET
+		  `jurisdictionname` = #{jurisdiction.jurisdictionname},
+		  `jurisdictioncode` = #{jurisdiction.jurisdictioncode},
+		  `createdate` = NOW(),
+		  `createby` = #{jurisdiction.createby} 
+		WHERE `jurisdictionid` = #{jurisdiction.jurisdictionid}
+	</update>
+	
+	<delete id="delJurisdiction">
+		DELETE 
+		FROM `jurisdiction` 
+		WHERE `jurisdictionid` = #{jurisdictionid}
+	</delete>
+	
 </mapper>
