@@ -26,7 +26,7 @@ public interface MechanicteamMapper {
  * @param tid
  * @return
  */
-    List<Mechanicteam> selectByPrimaryKey();
+    List<Mechanicteam> selectByPrimaryKey(@Param("tname")String tname);
 /**
  * ÐÞ¸Ä°à×é
  * @param record

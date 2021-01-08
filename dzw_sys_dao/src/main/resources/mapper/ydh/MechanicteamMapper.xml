@@ -15,7 +15,11 @@
     select 
     <include refid="Base_Column_List" />
     from mechanicteam
-    
+    <where>
+    	<if test="tname!=null">
+    		and tname like '%${tname}%'
+    	</if>
+    </where>
   </select>
   <!-- 删除班组 -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -34,25 +38,25 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       
       <if test="record.rescuebillid != null" >
-        record.rescuebillid,
+       rescuebillid,
       </if>
       <if test="record.tname != null" >
-        record.tname,
+       tname,
       </if>
       <if test="record.tprice != null" >
-        record.tprice,
+       tprice,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       
       <if test="record.rescuebillid != null" >
-        #{rescuebillid,jdbcType=INTEGER},
+        #{record.rescuebillid,jdbcType=INTEGER},
       </if>
       <if test="record.tname != null" >
-        #{tname,jdbcType=VARCHAR},
+        #{record.tname,jdbcType=VARCHAR},
       </if>
       <if test="record.tprice != null" >
-        #{tprice,jdbcType=REAL},
+        #{record.tprice,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -61,7 +65,7 @@
     update mechanicteam
     <set >
       <if test="record.rescuebillid != null" >
-        record.rescuebillid = #{record.rescuebillid,jdbcType=INTEGER},
+        rescuebillid = #{record.rescuebillid,jdbcType=INTEGER},
       </if>
       <if test="record.tname != null" >
         tname = #{record.tname,jdbcType=VARCHAR},

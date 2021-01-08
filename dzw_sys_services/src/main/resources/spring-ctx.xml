@@ -45,15 +45,12 @@
 			<list>
 				<value>classpath:/mapper/*.xml</value>
 				<value>classpath:/mapper/xn/*.xml</value>
-				<value>classpath:/mapper/cjl/*.xml</value>
 				<value>classpath:/mapper/ydh/*.xml</value>
-				<value>classpath:/mapper/yly/*.xml</value>
-				<value>classpath:/mapper/zrj/*.xml</value>
 			</list>
 		</property>
 	</bean>
 
-	<mybatis-spring:scan base-package="com.accp.dao"
+	<mybatis-spring:scan base-package="com.accp.dao.ydh"
 		factory-ref="ssf" />
 
 	<!-- 配置事务管理器 -->
@@ -79,11 +76,11 @@
 	<!-- AOP注入 -->
 	<aop:config>
 		<aop:advisor advice-ref="transAdvice"
-			pointcut="within(com.accp.biz..*)" />
+			pointcut="within(com.accp.biz.ydh..*)" />
 	</aop:config>
 
 
 	<context:component-scan
-		base-package="com.accp.biz" />
+		base-package="com.accp.biz.ydh" />
 
 </beans>

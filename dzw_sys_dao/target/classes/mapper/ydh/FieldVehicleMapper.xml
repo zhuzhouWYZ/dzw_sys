@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ydh.FieldVehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ydh.FieldVehicle" >
+    <id column="fvid" property="fvid" jdbcType="INTEGER" />
+    <result column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="fstatusid" property="fstatusid" jdbcType="INTEGER" />
+    <result column="vtypeid" property="vtypeid" jdbcType="INTEGER" />
+    <result column="fvname" property="fvname" jdbcType="VARCHAR" />
+    <result column="fvmileage" property="fvmileage" jdbcType="VARCHAR" />
+    <result column="fvpprices" property="fvpprices" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fvid, tid, fstatusid, vtypeid, fvname, fvmileage, fvpprices
+  </sql>
+  <!-- 查询外勤车辆 -->
+  <select id="selectByPrimaryKey" resultType="com.accp.pojo.ydh.FieldVehicle" >
+  SELECT * FROM  fieldvehicle 
+    <where>
+    	<if test="fstatusid!=null">
+    		and	fstatusid like '%${fstatusid}%'
+    	</if>
+    	<if test="fvname!=null">
+    		and fvname like'%${fvname}%'
+    	</if>
+    	and fstatusid!=3
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from fieldvehicle
+    where fvid = #{fvid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ydh.FieldVehicle" >
+    insert into fieldvehicle (fvid, tid, fstatusid, 
+      vtypeid, fvname, fvmileage, 
+      fvpprices)
+    values (#{fvid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}, #{fstatusid,jdbcType=INTEGER}, 
+      #{vtypeid,jdbcType=INTEGER}, #{fvname,jdbcType=VARCHAR}, #{fvmileage,jdbcType=VARCHAR}, 
+      #{fvpprices,jdbcType=REAL})
+  </insert>
+  <!-- 新增外勤车辆 -->
+  <insert id="insertSelective" parameterType="com.accp.pojo.ydh.FieldVehicle" >
+    insert into fieldvehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+      <if test="record.tid != null" >
+        tid,
+      </if>
+      <if test="record.fstatusid != null" >
+        fstatusid,
+      </if>
+      <if test="record.vtypeid != null" >
+        vtypeid,
+      </if>
+      <if test="record.fvname != null" >
+        fvname,
+      </if>
+      <if test="record.fvmileage != null" >
+        fvmileage,
+      </if>
+      <if test="record.fvpprices != null" >
+        fvpprices,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      
+      <if test="record.tid != null" >
+        #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fstatusid != null" >
+        #{record.fstatusid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vtypeid != null" >
+        #{record.vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fvname != null" >
+        #{record.fvname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fvmileage != null" >
+        #{record.fvmileage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fvpprices != null" >
+        #{record.fvpprices,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改外勤车辆信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ydh.FieldVehicle" >
+    update fieldvehicle
+    <set >
+      <if test="record.tid != 0" >
+        tid = #{record.tid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fstatusid != 0" >
+        fstatusid = #{record.fstatusid,jdbcType=INTEGER},
+      </if>
+      <if test="record.vtypeid != 0" >
+        vtypeid = #{record.vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.fvname != null" >
+        fvname = #{record.fvname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fvmileage != null" >
+        fvmileage = #{record.fvmileage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fvpprices != null" >
+        fvpprices = #{record.fvpprices,jdbcType=REAL},
+      </if>
+    </set>
+    where fvid = #{record.fvid,jdbcType=INTEGER}
+  </update>
+  <!-- 删除外勤车辆 -->
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ydh.FieldVehicle" >
+    update fieldvehicle
+    set fstatusid =0
+    where fvid = #{fvid,jdbcType=INTEGER}
+  </update>
+</mapper>
