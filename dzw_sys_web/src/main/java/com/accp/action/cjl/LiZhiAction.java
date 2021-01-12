@@ -72,6 +72,7 @@ public class LiZhiAction {
 	public Map<String, Object> addDelete(@PathVariable String Empno) {
 		Map<String, Object> message = new HashMap<String, Object>();
 			biz.remove(Empno);
+			
 			biz.modifyZhuangtai1(Empno);
 			message.put("code", "200");
 			message.put("msg", "ok");
