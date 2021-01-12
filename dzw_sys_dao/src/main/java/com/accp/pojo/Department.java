@@ -1,31 +1,23 @@
 package com.accp.pojo;
 
 public class Department {
-	private Integer departmentid;//部门id
-	
-	private String depnames;//部门名称
+    private Integer departmentid;
 
-	public Integer getDepartmentid() {
-		return departmentid;
-	}
+    private String depnames;
 
-	public void setDepartmentid(Integer departmentid) {
-		this.departmentid = departmentid;
-	}
+    public Integer getDepartmentid() {
+        return departmentid;
+    }
 
-	public String getDepnames() {
-		return depnames;
-	}
+    public void setDepartmentid(Integer departmentid) {
+        this.departmentid = departmentid;
+    }
 
-	public void setDepnames(String depnames) {
-		this.depnames = depnames;
-	}
+    public String getDepnames() {
+        return depnames;
+    }
 
-	@Override
-	public String toString() {
-		return "Department [departmentid=" + departmentid + ", depnames=" + depnames + "]";
-	}
-	
-	
-		
+    public void setDepnames(String depnames) {
+        this.depnames = depnames == null ? null : depnames.trim();
+    }
 }

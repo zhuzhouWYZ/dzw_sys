@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.biz.cjl.CjlBiz;
-import com.accp.pojo.Person;
+import com.accp.pojo.Jurisdiction;
 import com.accp.pojo.Posttable;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
-
 
 @RestController
 @RequestMapping("/api/posts")
@@ -31,8 +29,17 @@ public class PostTableAction {
 	 * 查询全部岗位
 	 * @return
 	 */
+	@GetMapping
+	public List<Posttable> queryAllaa(){
+		
+		return biz.queryAllaa();
+	}
+	/**
+	 * 分页查询全部岗位
+	 * @return
+	 */
 	@GetMapping("{p}/{s}")
-	public PageInfo<Posttable> queryAll(@PathVariable Integer p, @PathVariable Integer s){
+	public PageInfo<Posttable> queryAllFind(@PathVariable Integer p, @PathVariable Integer s){
 		PageHelper.startPage(p, s);
 		return biz.queryAllpostt();
 	}
@@ -51,6 +58,7 @@ public class PostTableAction {
 			biz.addpost(posttable);
 			message.put("code", "200");
 			message.put("msg", "ok");
+			
 		}else {
 			message.put("code", "500");
 			message.put("msg", "no");
@@ -74,5 +82,8 @@ public class PostTableAction {
 		message.put("msg", "ok");
 		return message;
 	}
-
+	@GetMapping("juese")
+	public List<Jurisdiction> queryAlljuese(){
+		return biz.queryAllJuese();
+	}
 }
