@@ -14,6 +14,14 @@ public class JurisdictionBiz {
 	@Autowired
 	private JurisdictionDao jurisdictionDao;
 	
+	public List<Jurisdiction> queryAllJurMap(){
+		return jurisdictionDao.queryAllJurMap();
+	}
+	
+	public Integer removeJurQx(String jurid,String syfunid) {
+		return jurisdictionDao.delJurQx(jurid, syfunid);
+	}
+	
 	public List<Jurisdiction> queryAllJurisdictions(){
 		return jurisdictionDao.queryAlljJurisdictions();
 	}

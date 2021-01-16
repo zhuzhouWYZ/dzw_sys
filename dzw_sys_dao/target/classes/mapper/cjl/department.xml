@@ -9,5 +9,13 @@
 	  `dzw`.`department` 
 	    
   </select>
-  
+  <insert id="insert" parameterType="com.accp.pojo.Department">
+  	INSERT INTO `dzw`.`department` (`depnames`) VALUES (#{depnames,jdbcType=VARCHAR}) ;
+  </insert>
+  <update id="update" parameterType="com.accp.pojo.Department">
+  		UPDATE   `dzw`.`department` SET  `depnames` = #{depnames} WHERE `departmentid` = #{departmentid} ;
+  </update>
+  <delete id="delete" >
+  		DELETE FROM  `dzw`.`department` WHERE `departmentid` = #{departmentid} ;
+  </delete>
 </mapper>

@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.cjl.EmployeeMapper">
+	<resultMap id="BaseResultMap" type="com.accp.pojo.Employee">
+		<id column="employeeno" property="employeeno" jdbcType="VARCHAR" />
+		<result column="jurisdictionid" property="jurisdictionid"
+			jdbcType="INTEGER" />
+		<result column="departmentid" property="departmentid"
+			jdbcType="INTEGER" />
+		<result column="empname" property="empname" jdbcType="VARCHAR" />
+		<result column="esex" property="esex" jdbcType="INTEGER" />
+		<result column="emplogenid" property="emplogenid"
+			jdbcType="VARCHAR" />
+		<result column="emplogepaw" property="emplogepaw"
+			jdbcType="VARCHAR" />
+		<result column="education" property="education"
+			jdbcType="VARCHAR" />
+		<result column="graduationschool" property="graduationschool"
+			jdbcType="VARCHAR" />
+		<result column="major" property="major" jdbcType="VARCHAR" />
+		<result column="IDcard" property="idcard" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="newaddress" property="newaddress"
+			jdbcType="VARCHAR" />
+		<result column="empphone" property="empphone"
+			jdbcType="VARCHAR" />
+		<result column="emergencyphone" property="emergencyphone"
+			jdbcType="VARCHAR" />
+		<result column="molphone" property="molphone"
+			jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="rztimes" property="rztimes" jdbcType="DATE" />
+		<result column="lztimes" property="lztimes" jdbcType="DATE" />
+		<result column="brithtimes" property="brithtimes"
+			jdbcType="DATE" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		employeeno, postid,jurisdictionid, departmentid, empname, esex, emplogenid, emplogepaw,
+		education, graduationschool, major, IDcard, address, newaddress,
+		empphone, emergencyphone,
+		molphone, email, rztimes, lztimes, brithtimes, status,empmoney
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from employee
+		where employeeno = #{employeeno,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from employee
+		where employeeno = #{employeeno,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.accp.pojo.Employee">
+		insert into employee (employeeno, jurisdictionid, departmentid,
+		empname, esex, emplogenid,
+		emplogepaw, education, graduationschool,
+		major, IDcard, address,
+		newaddress, empphone, emergencyphone,
+		molphone, email, rztimes,
+		lztimes, brithtimes, status
+		)
+		values (#{employeeno,jdbcType=VARCHAR}, #{jurisdictionid,jdbcType=INTEGER},
+		#{departmentid,jdbcType=INTEGER},
+		#{empname,jdbcType=VARCHAR}, #{esex,jdbcType=INTEGER}, #{emplogenid,jdbcType=VARCHAR},
+		#{emplogepaw,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR},
+		#{graduationschool,jdbcType=VARCHAR},
+		#{major,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{newaddress,jdbcType=VARCHAR}, #{empphone,jdbcType=VARCHAR},
+		#{emergencyphone,jdbcType=VARCHAR},
+		#{molphone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{rztimes,jdbcType=DATE},
+		#{lztimes,jdbcType=DATE}, #{brithtimes,jdbcType=DATE},
+		#{status,jdbcType=INTEGER}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.accp.pojo.Employee">
+		insert into employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="employeeno != null">
+				employeeno,
+			</if>
+			<if test="postid != null">
+				postid,
+			</if>
+			<if test="jurisdictionid != null">
+				jurisdictionid,
+			</if>
+			<if test="departmentid != null">
+				departmentid,
+			</if>
+			<if test="empname != null">
+				empname,
+			</if>
+			<if test="esex != null">
+				esex,
+			</if>
+			<if test="emplogenid != null">
+				emplogenid,
+			</if>
+			<if test="emplogepaw != null">
+				emplogepaw,
+			</if>
+			<if test="education != null">
+				education,
+			</if>
+			<if test="graduationschool != null">
+				graduationschool,
+			</if>
+			<if test="major != null">
+				major,
+			</if>
+			<if test="idcard != null">
+				IDcard,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="newaddress != null">
+				newaddress,
+			</if>
+			<if test="empphone != null">
+				empphone,
+			</if>
+			<if test="emergencyphone != null">
+				emergencyphone,
+			</if>
+			<if test="molphone != null">
+				molphone,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="rztimes != null">
+				rztimes,
+			</if>
+			<if test="lztimes != null">
+				lztimes,
+			</if>
+			<if test="brithtimes != null">
+				brithtimes,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="empmoney != null">
+				empmoney,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="employeeno != null">
+				#{employeeno,jdbcType=VARCHAR},
+			</if>
+			<if test="postid != null">
+				#{postid,jdbcType=INTEGER},
+			</if>
+			<if test="jurisdictionid != null">
+				#{jurisdictionid,jdbcType=INTEGER},
+			</if>
+			<if test="departmentid != null">
+				#{departmentid,jdbcType=INTEGER},
+			</if>
+			<if test="empname != null">
+				#{empname,jdbcType=VARCHAR},
+			</if>
+			<if test="esex != null">
+				#{esex,jdbcType=INTEGER},
+			</if>
+			<if test="emplogenid != null">
+				#{emplogenid,jdbcType=VARCHAR},
+			</if>
+			<if test="emplogepaw != null">
+				#{emplogepaw,jdbcType=VARCHAR},
+			</if>
+			<if test="education != null">
+				#{education,jdbcType=VARCHAR},
+			</if>
+			<if test="graduationschool != null">
+				#{graduationschool,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				#{major,jdbcType=VARCHAR},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="newaddress != null">
+				#{newaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="empphone != null">
+				#{empphone,jdbcType=VARCHAR},
+			</if>
+			<if test="emergencyphone != null">
+				#{emergencyphone,jdbcType=VARCHAR},
+			</if>
+			<if test="molphone != null">
+				#{molphone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="rztimes != null">
+				#{rztimes,jdbcType=DATE},
+			</if>
+			<if test="lztimes != null">
+				#{lztimes,jdbcType=DATE},
+			</if>
+			<if test="brithtimes != null">
+				#{brithtimes,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="empmoney != null">
+				#{empmoney,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.accp.pojo.Employee">
+		update employee
+		<set>
+			<if test="postid != null">
+				postid = #{postid,jdbcType=INTEGER},
+			</if>
+			<if test="jurisdictionid != null">
+				jurisdictionid = #{jurisdictionid,jdbcType=INTEGER},
+			</if>
+			<if test="departmentid != null">
+				departmentid = #{departmentid,jdbcType=INTEGER},
+			</if>
+			<if test="empname != null">
+				empname = #{empname,jdbcType=VARCHAR},
+			</if>
+			<if test="esex != null">
+				esex = #{esex,jdbcType=INTEGER},
+			</if>
+			<if test="emplogenid != null">
+				emplogenid = #{emplogenid,jdbcType=VARCHAR},
+			</if>
+			<if test="emplogepaw != null">
+				emplogepaw = #{emplogepaw,jdbcType=VARCHAR},
+			</if>
+			<if test="education != null">
+				education = #{education,jdbcType=VARCHAR},
+			</if>
+			<if test="graduationschool != null">
+				graduationschool = #{graduationschool,jdbcType=VARCHAR},
+			</if>
+			<if test="major != null">
+				major = #{major,jdbcType=VARCHAR},
+			</if>
+			<if test="idcard != null">
+				IDcard = #{idcard,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="newaddress != null">
+				newaddress = #{newaddress,jdbcType=VARCHAR},
+			</if>
+			<if test="empphone != null">
+				empphone = #{empphone,jdbcType=VARCHAR},
+			</if>
+			<if test="emergencyphone != null">
+				emergencyphone = #{emergencyphone,jdbcType=VARCHAR},
+			</if>
+			<if test="molphone != null">
+				molphone = #{molphone,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="rztimes != null">
+				rztimes = #{rztimes,jdbcType=DATE},
+			</if>
+			<if test="lztimes != null">
+				lztimes = #{lztimes,jdbcType=DATE},
+			</if>
+			<if test="brithtimes != null">
+				brithtimes = #{brithtimes,jdbcType=DATE},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="empmoney != null">
+				empmoney = #{empmoney,jdbcType=INTEGER},
+			</if>
+		</set>
+		where employeeno = #{employeeno,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.accp.pojo.Employee">
+		update employee
+		set jurisdictionid = #{jurisdictionid,jdbcType=INTEGER},
+		departmentid = #{departmentid,jdbcType=INTEGER},
+		empname = #{empname,jdbcType=VARCHAR},
+		esex = #{esex,jdbcType=INTEGER},
+		emplogenid = #{emplogenid,jdbcType=VARCHAR},
+		emplogepaw = #{emplogepaw,jdbcType=VARCHAR},
+		education = #{education,jdbcType=VARCHAR},
+		graduationschool = #{graduationschool,jdbcType=VARCHAR},
+		major = #{major,jdbcType=VARCHAR},
+		IDcard = #{idcard,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		newaddress = #{newaddress,jdbcType=VARCHAR},
+		empphone = #{empphone,jdbcType=VARCHAR},
+		emergencyphone = #{emergencyphone,jdbcType=VARCHAR},
+		molphone = #{molphone,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		rztimes = #{rztimes,jdbcType=DATE},
+		lztimes = #{lztimes,jdbcType=DATE},
+		brithtimes = #{brithtimes,jdbcType=DATE},
+		status = #{status,jdbcType=INTEGER},
+		empmoney = #{empmoney,jdbcType=INTEGER}
+		where employeeno = #{employeeno,jdbcType=VARCHAR}
+	</update>
+	<select id="EmpVo" resultType="com.accp.vo.EmpAndBumenAndZhiwei">
+		SELECT `employee`.*,depnames,postname FROM `employee`
+		JOIN `department`
+		ON employee.`departmentid`=`department`.`departmentid`
+		JOIN `posttable` 
+		ON `employee`.`postid`=posttable.`postid`
+		<where>
+			<if test="empname!=null">
+				empname=#{empname}
+			</if>
+		</where>
+		and status=0
+	</select>
+	
+</mapper>

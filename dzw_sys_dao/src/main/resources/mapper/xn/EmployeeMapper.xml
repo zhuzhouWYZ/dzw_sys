@@ -2,9 +2,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.dao.xn.LoadEmpDao">
 
-	<select id="loginIn" resultType="com.accp.pojo.Employee">
-		SELECT * 
-		FROM `employee` 
+
+	<resultMap type="employee" id="EmpMap">
+		<id column="employeeno" property="employeeno" />
+		<result column="empname" property="empname"/>
+		<result column="emplogenid" property="emplogenid"/>
+		<result column="emplogepaw" property="emplogepaw"/>
+		<result column="status" property="status"/>
+		<association property="jurisdiction" resultMap="JurMap"></association>
+	</resultMap>
+	<resultMap type="jurisdiction" id="JurMap">
+		<id column="jurisdictionid" property="jurisdictionid"/>
+		<result column="jurisdictionname" property="jurisdictionname"/>
+		<result column="jurisdictioncode" property="jurisdictioncode"/>
+		<result column="jurstatus" property="jurstatus"/>
+		<collection property="syfunctions" ofType="syfunction">
+			<id column="syfunctionid" property="syfunctionid"/>
+			<result column="syfunctionname" property="syfunctionname"/>
+			<result column="syfunctioncode" property="syfunctioncode"/>
+			<result column="uplv" property="uplv"/>
+			<result column="createdate" property="createdate"/>
+			<association property="parentSyfun" column="uplv" select="selectParentSyfun"></association>
+		</collection>
+	</resultMap>
+	
+	<select id="selectParentSyfun" resultType="syfunction">
+		select * from `syfunction` where `syfunctionid` =#{0}
+	</select>
+
+	<select id="loginIn" resultMap="EmpMap">
+		SELECT
+		e.`employeeno`,
+		e.empname,
+		e.`emplogenid`,
+		e.`emplogepaw`,
+		e.`status`,
+		j.`jurisdictionid`,
+		j.`jurisdictionname`,
+		j.`jurisdictioncode`,
+		j.`jurstatus`,
+		s.`syfunctionid`,
+		s.`syfunctionname`,
+		s.`syfunctioncode`,
+		s.`createdate`,
+		s.`uplv`
+		FROM `employee` e
+		JOIN `jurisdiction` j
+		ON e.`jurisdictionid`= j.`jurisdictionid`
+		INNER JOIN `qxconnect` q ON q.`jurisdictionid` = j.`jurisdictionid`
+		INNER JOIN `syfunction` s ON s.`syfunctionid` = q.`syfunctionid`
 		WHERE `emplogenid`= #{emplogenid}
 		AND `emplogepaw`= #{emplogepaw}
 	</select>

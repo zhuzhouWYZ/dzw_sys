@@ -8,23 +8,28 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.accp.biz.xn.JurisdictionBiz;
 import com.accp.dao.xn.LoadEmpDao;
+import com.accp.dao.xn.QxconnectDao;
 import com.alibaba.fastjson.JSON;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/spring-ctx.xml")
-public class BizTest {
+public class XnBizTest {
 	
 //	@Autowired JurisdictionBiz jurisdictionBiz;
 	@Autowired
 	LoadEmpDao loadEmpDao;
+	
+	@Autowired
+	QxconnectDao qxconnectDao;
 	
 	@Test
 	public void test() {
 //		jurisdictionBiz.queryAllJurisdictions().forEach(temp->{
 //			System.out.println(JSON.toJSONString(temp));
 //		});
-		loadEmpDao.loginIn("admin", "admin");
+		qxconnectDao.deleteByJid("2");
+		//System.out.println(JSON.toJSONString(loadEmpDao.loginIn("admin", "123456")));
 	}
 
 }

@@ -9,6 +9,20 @@ import com.accp.pojo.Jurisdiction;
 public interface JurisdictionDao {
 
 	/**
+	 * 查询全部角色和权限
+	 * @return
+	 */
+	List<Jurisdiction> queryAllJurMap();
+	
+	/**
+	 * 删除角色权限
+	 * @param jurisdictionid
+	 * @param syfunctionid
+	 * @return
+	 */
+	Integer delJurQx(@Param("jurisdictionid")String jurisdictionid,@Param("syfunctionid")String syfunctionid);
+	
+	/**
 	 * 查询所有角色信息
 	 * 
 	 * @return

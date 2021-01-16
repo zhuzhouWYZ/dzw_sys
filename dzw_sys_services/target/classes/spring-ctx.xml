@@ -65,16 +65,22 @@
 	<!-- 配置事务增强器 -->
 	<tx:advice id="transAdvice"
 		transaction-manager="transManager">
-		<tx:attributes>
-			<tx:method name="add*" propagation="REQUIRED"
-				isolation="READ_COMMITTED" />
-			<tx:method name="remove*" propagation="REQUIRED"
-				isolation="READ_COMMITTED" />
-			<tx:method name="modify*" propagation="REQUIRED"
-				isolation="READ_COMMITTED" />
-			<tx:method name="*" propagation="SUPPORTS" read-only="true"
-				isolation="READ_COMMITTED" />
-		</tx:attributes>
+			<tx:attributes>
+			   <tx:method name="add*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			    <tx:method name="delect*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			    <tx:method name="updata*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			   <tx:method name="remove*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			    <tx:method name="delect*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			   <tx:method name="modify*" propagation="REQUIRED"
+			    isolation="READ_COMMITTED" />
+			   <tx:method name="*" propagation="SUPPORTS" read-only="true"
+			    isolation="READ_COMMITTED" />
+			  </tx:attributes>
 	</tx:advice>
 	<!-- AOP注入 -->
 	<aop:config>

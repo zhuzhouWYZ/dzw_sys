@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.xn.SyfunctionDao">
+
+	
+	<resultMap type="syfunction" id="syfunMap">
+			<id column="syfunctionid" property="syfunctionid" />
+			<result column="syfunctionname" property="syfunctionname" />
+			<result column="syfunctioncode" property="syfunctioncode" />
+			<result column="uplv" property="uplv" />
+			<result column="createdate" property="createdate" />
+			<association property="parentSyfun" column="uplv"
+				select="selectParentSyfun"></association>
+	</resultMap>
+	
+	<select id="selectParentSyfun" resultType="syfunction">
+		select * from `syfunction` where `syfunctionid` =#{0}
+	</select>
+	
+	<select id="queryAllSyfun" resultMap="syfunMap">
+  		select * from `syfunction`
+  	</select>
+	
+
+</mapper>

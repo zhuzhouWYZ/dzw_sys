@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.cjl.DimissionMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Dimission" >
+    <id column="dimissionid" property="dimissionid" jdbcType="INTEGER" />
+    <result column="employeeno" property="employeeno" jdbcType="VARCHAR" />
+    <result column="dimreasona" property="dimreasona" jdbcType="VARCHAR" />
+    <result column="departuredate" property="departuredate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dimissionid, employeeno, dimreasona, departuredate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dimission
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey">
+    delete from dimission
+    where employeeno = #{employeeno}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Dimission" >
+    insert into dimission (employeeno, dimreasona, 
+      departuredate)
+    values (#{employeeno,jdbcType=VARCHAR}, #{dimreasona,jdbcType=VARCHAR}, 
+      #{departuredate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Dimission" >
+    insert into dimission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dimissionid != null" >
+        dimissionid,
+      </if>
+      <if test="employeeno != null" >
+        employeeno,
+      </if>
+      <if test="dimreasona != null" >
+        dimreasona,
+      </if>
+      <if test="departuredate != null" >
+        departuredate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dimissionid != null" >
+        #{dimissionid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeno != null" >
+        #{employeeno,jdbcType=VARCHAR},
+      </if>
+      <if test="dimreasona != null" >
+        #{dimreasona,jdbcType=VARCHAR},
+      </if>
+      <if test="departuredate != null" >
+        #{departuredate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Dimission" >
+    update dimission
+    <set >
+      <if test="employeeno != null" >
+        employeeno = #{employeeno,jdbcType=VARCHAR},
+      </if>
+      <if test="dimreasona != null" >
+        dimreasona = #{dimreasona,jdbcType=VARCHAR},
+      </if>
+      <if test="departuredate != null" >
+        departuredate = #{departuredate,jdbcType=DATE},
+      </if>
+    </set>
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Dimission" >
+    update dimission
+    set employeeno = #{employeeno,jdbcType=VARCHAR},
+      dimreasona = #{dimreasona,jdbcType=VARCHAR},
+      departuredate = #{departuredate,jdbcType=DATE}
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </update>
+  <!-- 离职登记vo -->
+  <select id="lizhiVo" resultType="com.accp.vo.EmpAndBumenAndZhiweiAndLizhi">
+  		SELECT `employee`.*,depnames,postname,`dimission`.`dimissionid`,`dimission`.`dimreasona`,`dimission`.`departuredate` FROM `employee`
+		JOIN `department`
+		ON employee.`departmentid`=`department`.`departmentid`
+		JOIN `posttable` 
+		ON `employee`.`postid`=posttable.`postid`
+		JOIN `dimission`
+		ON `employee`.`employeeno`=`dimission`.`employeeno`
+  </select>
+  
+  <update id="EmpZhuangTai">
+  	UPDATE `employee` SET `status`=1 WHERE `employeeno`=#{Empno}
+  </update>
+  
+  <update id="EmpZhuangTai1">
+  	UPDATE `employee` SET `status`=0 WHERE `employeeno`=#{Empno}
+  </update>
+</mapper>

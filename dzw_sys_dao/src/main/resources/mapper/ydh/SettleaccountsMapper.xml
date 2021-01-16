@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ydh.SettleaccountsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ydh.Settleaccounts" >
+    <id column="csid" property="csid" jdbcType="INTEGER" />
+    <result column="employeeno" property="employeeno" jdbcType="VARCHAR" />
+    <result column="repairbillid" property="repairbillid" jdbcType="INTEGER" />
+    <result column="rescuebillid" property="rescuebillid" jdbcType="INTEGER" />
+    <result column="cssettleno" property="cssettleno" jdbcType="VARCHAR" />
+    <result column="cstime" property="cstime" jdbcType="DATE" />
+    <result column="cssum" property="cssum" jdbcType="INTEGER" />
+    <result column="csdiscount" property="csdiscount" jdbcType="REAL" />
+    <result column="Cscloseprice" property="cscloseprice" jdbcType="REAL" />
+    <result column="csmaterialspr" property="csmaterialspr" jdbcType="REAL" />
+    <result column="csmanhourpr" property="csmanhourpr" jdbcType="REAL" />
+    <result column="csadditionpr" property="csadditionpr" jdbcType="REAL" />
+    <result column="csremakes" property="csremakes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    csid, employeeno, repairbillid, rescuebillid, cssettleno, cstime, cssum, csdiscount, 
+    Cscloseprice, csmaterialspr, csmanhourpr, csadditionpr, csremakes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from settleaccounts
+    where csid = #{csid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from settleaccounts
+    where csid = #{csid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ydh.Settleaccounts" >
+    insert into settleaccounts (csid, employeeno, repairbillid, 
+      rescuebillid, cssettleno, cstime, 
+      cssum, csdiscount, Cscloseprice, 
+      csmaterialspr, csmanhourpr, csadditionpr, 
+      csremakes)
+    values (#{csid,jdbcType=INTEGER}, #{employeeno,jdbcType=VARCHAR}, #{repairbillid,jdbcType=INTEGER}, 
+      #{rescuebillid,jdbcType=INTEGER}, #{cssettleno,jdbcType=VARCHAR}, #{cstime,jdbcType=DATE}, 
+      #{cssum,jdbcType=INTEGER}, #{csdiscount,jdbcType=REAL}, #{cscloseprice,jdbcType=REAL}, 
+      #{csmaterialspr,jdbcType=REAL}, #{csmanhourpr,jdbcType=REAL}, #{csadditionpr,jdbcType=REAL}, 
+      #{csremakes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.ydh.Settleaccounts" >
+    insert into settleaccounts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="csid != null" >
+        csid,
+      </if>
+      <if test="employeeno != null" >
+        employeeno,
+      </if>
+      <if test="repairbillid != null" >
+        repairbillid,
+      </if>
+      <if test="rescuebillid != null" >
+        rescuebillid,
+      </if>
+      <if test="cssettleno != null" >
+        cssettleno,
+      </if>
+      <if test="cstime != null" >
+        cstime,
+      </if>
+      <if test="cssum != null" >
+        cssum,
+      </if>
+      <if test="csdiscount != null" >
+        csdiscount,
+      </if>
+      <if test="cscloseprice != null" >
+        Cscloseprice,
+      </if>
+      <if test="csmaterialspr != null" >
+        csmaterialspr,
+      </if>
+      <if test="csmanhourpr != null" >
+        csmanhourpr,
+      </if>
+      <if test="csadditionpr != null" >
+        csadditionpr,
+      </if>
+      <if test="csremakes != null" >
+        csremakes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="csid != null" >
+        #{csid,jdbcType=INTEGER},
+      </if>
+      <if test="employeeno != null" >
+        #{employeeno,jdbcType=VARCHAR},
+      </if>
+      <if test="repairbillid != null" >
+        #{repairbillid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuebillid != null" >
+        #{rescuebillid,jdbcType=INTEGER},
+      </if>
+      <if test="cssettleno != null" >
+        #{cssettleno,jdbcType=VARCHAR},
+      </if>
+      <if test="cstime != null" >
+        #{cstime,jdbcType=DATE},
+      </if>
+      <if test="cssum != null" >
+        #{cssum,jdbcType=INTEGER},
+      </if>
+      <if test="csdiscount != null" >
+        #{csdiscount,jdbcType=REAL},
+      </if>
+      <if test="cscloseprice != null" >
+        #{cscloseprice,jdbcType=REAL},
+      </if>
+      <if test="csmaterialspr != null" >
+        #{csmaterialspr,jdbcType=REAL},
+      </if>
+      <if test="csmanhourpr != null" >
+        #{csmanhourpr,jdbcType=REAL},
+      </if>
+      <if test="csadditionpr != null" >
+        #{csadditionpr,jdbcType=REAL},
+      </if>
+      <if test="csremakes != null" >
+        #{csremakes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ydh.Settleaccounts" >
+    update settleaccounts
+    <set >
+      <if test="employeeno != null" >
+        employeeno = #{employeeno,jdbcType=VARCHAR},
+      </if>
+      <if test="repairbillid != null" >
+        repairbillid = #{repairbillid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuebillid != null" >
+        rescuebillid = #{rescuebillid,jdbcType=INTEGER},
+      </if>
+      <if test="cssettleno != null" >
+        cssettleno = #{cssettleno,jdbcType=VARCHAR},
+      </if>
+      <if test="cstime != null" >
+        cstime = #{cstime,jdbcType=DATE},
+      </if>
+      <if test="cssum != null" >
+        cssum = #{cssum,jdbcType=INTEGER},
+      </if>
+      <if test="csdiscount != null" >
+        csdiscount = #{csdiscount,jdbcType=REAL},
+      </if>
+      <if test="cscloseprice != null" >
+        Cscloseprice = #{cscloseprice,jdbcType=REAL},
+      </if>
+      <if test="csmaterialspr != null" >
+        csmaterialspr = #{csmaterialspr,jdbcType=REAL},
+      </if>
+      <if test="csmanhourpr != null" >
+        csmanhourpr = #{csmanhourpr,jdbcType=REAL},
+      </if>
+      <if test="csadditionpr != null" >
+        csadditionpr = #{csadditionpr,jdbcType=REAL},
+      </if>
+      <if test="csremakes != null" >
+        csremakes = #{csremakes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ydh.Settleaccounts" >
+    update settleaccounts
+    set employeeno = #{employeeno,jdbcType=VARCHAR},
+      repairbillid = #{repairbillid,jdbcType=INTEGER},
+      rescuebillid = #{rescuebillid,jdbcType=INTEGER},
+      cssettleno = #{cssettleno,jdbcType=VARCHAR},
+      cstime = #{cstime,jdbcType=DATE},
+      cssum = #{cssum,jdbcType=INTEGER},
+      csdiscount = #{csdiscount,jdbcType=REAL},
+      Cscloseprice = #{cscloseprice,jdbcType=REAL},
+      csmaterialspr = #{csmaterialspr,jdbcType=REAL},
+      csmanhourpr = #{csmanhourpr,jdbcType=REAL},
+      csadditionpr = #{csadditionpr,jdbcType=REAL},
+      csremakes = #{csremakes,jdbcType=VARCHAR}
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+</mapper>

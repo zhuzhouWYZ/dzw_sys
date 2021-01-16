@@ -2,33 +2,74 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.accp.dao.xn.JurisdictionDao">
 
-	<select id="queryAlljJurisdictions" resultType="com.accp.pojo.Jurisdiction">
-		SELECT * 
+	<resultMap type="jurisdiction" id="JurMap">
+		<id column="jurisdictionid" property="jurisdictionid" />
+		<result column="jurisdictionname" property="jurisdictionname" />
+		<result column="jurisdictioncode" property="jurisdictioncode" />
+		<result column="jurstatus" property="jurstatus" />
+		<result column="createdate" property="createdate" />
+		<result column="createby" property="createby" />
+		<collection property="syfunctions" ofType="syfunction">
+			<id column="syfunctionid" property="syfunctionid" />
+			<result column="syfunctionname" property="syfunctionname" />
+			<result column="syfunctioncode" property="syfunctioncode" />
+			<result column="uplv" property="uplv" />
+			<result column="createdate" property="createdate" />
+			<association property="parentSyfun" column="uplv"
+				select="selectParentSyfun"></association>
+		</collection>
+	</resultMap>
+	
+	<select id="selectParentSyfun" resultType="syfunction">
+		select * from `syfunction` where `syfunctionid` =#{0}
+	</select>
+	
+	<!-- 查询全部角色和权限 -->
+	<select id="queryAllJurMap" resultMap="JurMap">
+	 	 SELECT * 
+		 FROM `jurisdiction` j
+		 LEFT JOIN `qxconnect` q
+		 ON q.`jurisdictionid` = j.`jurisdictionid`
+		 LEFT JOIN `syfunction` s
+		 ON s.`syfunctionid` = q.`syfunctionid`
+	</select>
+
+	<!-- 查询全部角色 -->
+	<select id="queryAlljJurisdictions"
+		resultType="com.accp.pojo.Jurisdiction">
+		SELECT *
 		FROM
 		`jurisdiction`
 	</select>
-	
+
 	<insert id="addJurisdiction">
-		INSERT INTO `jurisdiction` 
-		(`jurisdictionname`,`jurisdictioncode`,`jurstatus`,`createdate`,`createby`) 
+		INSERT INTO `jurisdiction`
+		(`jurisdictionname`,`jurisdictioncode`,`jurstatus`,`createdate`,`createby`)
 		VALUES
 		(#{jurisdiction.jurisdictionname},#{jurisdiction.jurisdictioncode},'0',NOW(),#{jurisdiction.createby})
 	</insert>
-	
+
 	<update id="updateJurisdiction">
-		UPDATE `jurisdiction` 
+		UPDATE `jurisdiction`
 		SET
-		  `jurisdictionname` = #{jurisdiction.jurisdictionname},
-		  `jurisdictioncode` = #{jurisdiction.jurisdictioncode},
-		  `createdate` = NOW(),
-		  `createby` = #{jurisdiction.createby} 
+		`jurisdictionname` = #{jurisdiction.jurisdictionname},
+		`jurisdictioncode` = #{jurisdiction.jurisdictioncode},
+		`createdate` = NOW(),
+		`createby` = #{jurisdiction.createby}
 		WHERE `jurisdictionid` = #{jurisdiction.jurisdictionid}
 	</update>
-	
+
 	<delete id="delJurisdiction">
-		DELETE 
-		FROM `jurisdiction` 
+		DELETE
+		FROM `jurisdiction`
 		WHERE `jurisdictionid` = #{jurisdictionid}
 	</delete>
 	
+	<delete id="delJurQx">
+		DELETE FROM `qxconnect` 
+		WHERE `jurisdictionid` = #{jurisdictionid} 
+		AND `syfunctionid` = #{syfunctionid}
+	</delete>
+	
+
 </mapper>

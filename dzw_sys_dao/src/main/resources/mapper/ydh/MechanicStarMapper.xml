@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ydh.MechanicStarMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ydh.MechanicStar" >
+    <id column="sid" property="sid" jdbcType="INTEGER" />
+    <result column="sname" property="sname" jdbcType="VARCHAR" />
+    <result column="sprice" property="sprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sid, sname, sprice
+  </sql>
+  <!-- 查询技工星级 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from mechanicstar
+   
+  </select>
+  <!-- 根据id删除技工星级 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mechanicstar
+    where sid = #{sid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ydh.MechanicStar" >
+    insert into mechanicstar (sid, sname, sprice
+      )
+    values (#{sid,jdbcType=INTEGER}, #{sname,jdbcType=VARCHAR}, #{sprice,jdbcType=REAL}
+      )
+  </insert>
+  <!-- 新增技工星级 -->
+  <insert id="insertSelective" parameterType="com.accp.pojo.ydh.MechanicStar" >
+    insert into mechanicstar
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+      <if test="record.sname != null" >
+        sname,
+      </if>
+      <if test="record.sprice != null" >
+        sprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+     
+      <if test="record.sname != null" >
+        #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sprice != null" >
+        #{record.sprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改技工星级 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ydh.MechanicStar" >
+    update mechanicstar
+    <set >
+      <if test="record.sname != null" >
+        sname = #{record.sname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        sprice = #{record.sprice,jdbcType=REAL},
+      </if>
+    </set>
+    where sid = #{record.sid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ydh.MechanicStar" >
+    update mechanicstar
+    set sname = #{sname,jdbcType=VARCHAR},
+      sprice = #{sprice,jdbcType=REAL}
+    where sid = #{sid,jdbcType=INTEGER}
+  </update>
+</mapper>

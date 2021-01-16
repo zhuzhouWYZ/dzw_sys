@@ -1,178 +1,256 @@
 package com.accp.pojo;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Employee{
 	private String employeeno;
+	private Integer postid; 
 	private Integer jurisdictionid;
 	private Integer departmentid;
 	private String empname;
 	private Integer esex;
-	private String emplogenid;
-	private String emplogepaw;
+	private String emplogenid;//登录名
+	private String emplogepaw;//密码
 	private String education;
 	private String graduationschool;
 	private String major;
-	private String IDcard;
+	private String idcard;
 	private String address;
 	private String newaddress;
 	private String empphone;
 	private String emergencyphone;
 	private String molphone;
 	private String email;
-	private String rztimes;
-	private String lztimes;
-	private String brithtimes;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JSONField(format = "yyyy-MM-dd")
+	private Date rztimes;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JSONField(format = "yyyy-MM-dd")
+	private Date lztimes;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JSONField(format = "yyyy-MM-dd")
+	private Date brithtimes;
 	private Integer status;
+	private Integer empmoney;
+	
+	private Jurisdiction jurisdiction;//角色信息
+	
+	
+	
 
-	public String getEmployeeno(){
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
+
+	public Integer getEmpmoney() {
+		return empmoney;
+	}
+
+	public void setEmpmoney(Integer empmoney) {
+		this.empmoney = empmoney;
+	}
+
+	public Employee(String employeeno, String empname, String emplogenid, String emplogepaw, Integer status,
+			Jurisdiction jurisdiction) {
+		super();
+		this.employeeno = employeeno;
+		this.empname = empname;
+		this.emplogenid = emplogenid;
+		this.emplogepaw = emplogepaw;
+		this.status = status;
+		this.jurisdiction = jurisdiction;
+	}
+
+	public Employee() {
+		super();
+	}
+
+	public String getEmployeeno() {
 		return employeeno;
 	}
-	public void setEmployeeno(String employeeno){
+
+	public void setEmployeeno(String employeeno) {
 		this.employeeno = employeeno;
 	}
-	public Integer getJurisdictionid(){
+
+	public Integer getPostid() {
+		return postid;
+	}
+
+	public void setPostid(Integer postid) {
+		this.postid = postid;
+	}
+
+	public Integer getJurisdictionid() {
 		return jurisdictionid;
 	}
-	public void setJurisdictionid(Integer jurisdictionid){
+
+	public void setJurisdictionid(Integer jurisdictionid) {
 		this.jurisdictionid = jurisdictionid;
 	}
-	public Integer getDepartmentid(){
+
+	public Integer getDepartmentid() {
 		return departmentid;
 	}
-	public void setDepartmentid(Integer departmentid){
+
+	public void setDepartmentid(Integer departmentid) {
 		this.departmentid = departmentid;
 	}
-	public String getEmpname(){
+
+	public String getEmpname() {
 		return empname;
 	}
-	public void setEmpname(String empname){
+
+	public void setEmpname(String empname) {
 		this.empname = empname;
 	}
-	public Integer getEsex(){
+
+	public Integer getEsex() {
 		return esex;
 	}
-	public void setEsex(Integer esex){
+
+	public void setEsex(Integer esex) {
 		this.esex = esex;
 	}
-	public String getEmplogenid(){
+
+	public String getEmplogenid() {
 		return emplogenid;
 	}
-	public void setEmplogenid(String emplogenid){
+
+	public void setEmplogenid(String emplogenid) {
 		this.emplogenid = emplogenid;
 	}
-	public String getEmplogepaw(){
+
+	public String getEmplogepaw() {
 		return emplogepaw;
 	}
-	public void setEmplogepaw(String emplogepaw){
+
+	public void setEmplogepaw(String emplogepaw) {
 		this.emplogepaw = emplogepaw;
 	}
-	public String getEducation(){
+
+	public String getEducation() {
 		return education;
 	}
-	public void setEducation(String education){
+
+	public void setEducation(String education) {
 		this.education = education;
 	}
-	public String getGraduationschool(){
+
+	public String getGraduationschool() {
 		return graduationschool;
 	}
-	public void setGraduationschool(String graduationschool){
+
+	public void setGraduationschool(String graduationschool) {
 		this.graduationschool = graduationschool;
 	}
-	public String getMajor(){
+
+	public String getMajor() {
 		return major;
 	}
-	public void setMajor(String major){
+
+	public void setMajor(String major) {
 		this.major = major;
 	}
-	public String getIDcard(){
-		return IDcard;
-	}
-	public void setIDcard(String IDcard){
-		this.IDcard = IDcard;
-	}
-	public String getAddress(){
+
+
+	public String getAddress() {
 		return address;
 	}
-	public void setAddress(String address){
+
+	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getNewaddress(){
+
+	public String getNewaddress() {
 		return newaddress;
 	}
-	public void setNewaddress(String newaddress){
+
+	public void setNewaddress(String newaddress) {
 		this.newaddress = newaddress;
 	}
-	public String getEmpphone(){
+
+	public String getEmpphone() {
 		return empphone;
 	}
-	public void setEmpphone(String empphone){
+
+	public void setEmpphone(String empphone) {
 		this.empphone = empphone;
 	}
-	public String getEmergencyphone(){
+
+	public String getEmergencyphone() {
 		return emergencyphone;
 	}
-	public void setEmergencyphone(String emergencyphone){
+
+	public void setEmergencyphone(String emergencyphone) {
 		this.emergencyphone = emergencyphone;
 	}
-	public String getMolphone(){
+
+	public String getMolphone() {
 		return molphone;
 	}
-	public void setMolphone(String molphone){
+
+	public void setMolphone(String molphone) {
 		this.molphone = molphone;
 	}
-	public String getEmail(){
+
+	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email){
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getRztimes(){
+
+	public Date getRztimes() {
 		return rztimes;
 	}
-	public void setRztimes(String rztimes){
+
+	public void setRztimes(Date rztimes) {
 		this.rztimes = rztimes;
 	}
-	public String getLztimes(){
+
+	public Date getLztimes() {
 		return lztimes;
 	}
-	public void setLztimes(String lztimes){
+
+	public void setLztimes(Date lztimes) {
 		this.lztimes = lztimes;
 	}
-	public String getBrithtimes(){
+
+	public Date getBrithtimes() {
 		return brithtimes;
 	}
-	public void setBrithtimes(String brithtimes){
+
+	public void setBrithtimes(Date brithtimes) {
 		this.brithtimes = brithtimes;
 	}
-	public Integer getStatus(){
+
+	public Integer getStatus() {
 		return status;
 	}
-	public void setStatus(Integer status){
+
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public Employee(){
-		super();
+
+	public Jurisdiction getJurisdiction() {
+		return jurisdiction;
 	}
-	public Employee(String employeeno,Integer jurisdictionid,Integer departmentid,String empname,Integer esex,String emplogenid,String emplogepaw,String education,String graduationschool,String major,String IDcard,String address,String newaddress,String empphone,String emergencyphone,String molphone,String email,String rztimes,String lztimes,String brithtimes,Integer status){
-		super();
-		this.employeeno = employeeno;
-		this.jurisdictionid = jurisdictionid;
-		this.departmentid = departmentid;
-		this.empname = empname;
-		this.esex = esex;
-		this.emplogenid = emplogenid;
-		this.emplogepaw = emplogepaw;
-		this.education = education;
-		this.graduationschool = graduationschool;
-		this.major = major;
-		this.IDcard = IDcard;
-		this.address = address;
-		this.newaddress = newaddress;
-		this.empphone = empphone;
-		this.emergencyphone = emergencyphone;
-		this.molphone = molphone;
-		this.email = email;
-		this.rztimes = rztimes;
-		this.lztimes = lztimes;
-		this.brithtimes = brithtimes;
-		this.status = status;
+
+	public void setJurisdiction(Jurisdiction jurisdiction) {
+		this.jurisdiction = jurisdiction;
 	}
+	
+	
+	
+	
 }

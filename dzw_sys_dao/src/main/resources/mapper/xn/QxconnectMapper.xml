@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.xn.QxconnectDao">
+
+  	
+  	<insert id="addQxByList">
+  		<foreach collection="fids" item="fid">
+  			INSERT INTO `qxconnect` 
+  			(`jurisdictionid`,`syfunctionid`,`creatdate`)
+  			values
+  			(#{jid},#{fid},NOW());
+  		</foreach>
+  		DELETE FROM `qxconnect` WHERE `syfunctionid` IN (1,2,3,4,5,6,7)
+  	</insert>
+  	
+  	 <delete id="deleteByJid" >
+	    DELETE FROM `qxconnect` 
+	    WHERE `jurisdictionid` = #{jid}
+	  </delete>
+	  
+	  <delete id="deleteByFid">
+	  	DELETE FROM `qxconnect` WHERE `syfunctionid` IN (1,2,3,4,5,6,7)
+	  </delete>
+	
+
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ydh.MechanicteamMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ydh.Mechanicteam" >
+    <id column="tid" property="tid" jdbcType="INTEGER" />
+    <result column="rescuebillid" property="rescuebillid" jdbcType="INTEGER" />
+    <result column="tname" property="tname" jdbcType="VARCHAR" />
+    <result column="tprice" property="tprice" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tid, rescuebillid, tname, tprice
+  </sql>
+  <!-- 查询所有 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from mechanicteam
+    <where>
+    	<if test="tname!=null">
+    		and tname like '%${tname}%'
+    	</if>
+    </where>
+  </select>
+  <!-- 删除班组 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mechanicteam
+    where tid = #{tid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ydh.Mechanicteam" >
+    insert into mechanicteam (tid, rescuebillid, tname, 
+      tprice)
+    values (#{tid,jdbcType=INTEGER}, #{rescuebillid,jdbcType=INTEGER}, #{tname,jdbcType=VARCHAR}, 
+      #{tprice,jdbcType=REAL})
+  </insert>
+  <!-- 新增班组 -->
+  <insert id="insertSelective" parameterType="com.accp.pojo.ydh.Mechanicteam" >
+    insert into mechanicteam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      <if test="record.rescuebillid != null" >
+       rescuebillid,
+      </if>
+      <if test="record.tname != null" >
+       tname,
+      </if>
+      <if test="record.tprice != null" >
+       tprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      
+      <if test="record.rescuebillid != null" >
+        #{record.rescuebillid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tprice != null" >
+        #{record.tprice,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改班组 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ydh.Mechanicteam" >
+    update mechanicteam
+    <set >
+      <if test="record.rescuebillid != null" >
+        rescuebillid = #{record.rescuebillid,jdbcType=INTEGER},
+      </if>
+      <if test="record.tname != null" >
+        tname = #{record.tname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tprice != null" >
+        tprice = #{record.tprice,jdbcType=REAL},
+      </if>
+    </set>
+    where tid = #{record.tid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ydh.Mechanicteam" >
+    update mechanicteam
+    set rescuebillid = #{rescuebillid,jdbcType=INTEGER},
+      tname = #{tname,jdbcType=VARCHAR},
+      tprice = #{tprice,jdbcType=REAL}
+    where tid = #{tid,jdbcType=INTEGER}
+  </update>
+</mapper>

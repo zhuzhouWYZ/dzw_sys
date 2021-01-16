@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.xn.StatisticsDao">
+	<select id="queryStas" resultType="com.accp.pojo.Statistics">
+		SELECT `stname`,`stdate` , SUM(`stcount`) stcount 
+		FROM `statistics` GROUP BY `stname`,`stdate` 
+		HAVING `stdate` = #{stdate}
+	</select>
+
+</mapper>
